@@ -54,7 +54,7 @@ namespace Lab_10_1
                     }
                     i++;
                 }
-
+                TextInput.Text = motoCycle.ToString();
             }
         }
     }
