@@ -32,6 +32,7 @@ namespace Lab_10_1
         {
             OpenFileDialog openFileDialog = new OpenFileDialog();
             openFileDialog.Filter = "Text files(*.txt)|*.txt";
+            if (openFileDialog.ShowDialog() == false) return;
             ReadAsync(openFileDialog.FileName);
         }
         private async void ReadAsync(string path)
@@ -55,6 +56,21 @@ namespace Lab_10_1
                     i++;
                 }
                 TextInput.Text = motoCycle.ToString();
+            }
+        }
+
+        private void MenuItem_Click_Save(object sender, RoutedEventArgs e)
+        {
+            SaveFileDialog saveFileDialog = new SaveFileDialog();
+            saveFileDialog.Filter = "Text files(*.txt)|*.txt";
+            if (saveFileDialog.ShowDialog() == false) return;
+            SaveAsync(saveFileDialog.FileName);
+        }
+        private async void SaveAsync(string path)
+        {
+            using (StreamWriter writer = new StreamWriter(path, false))
+            {
+                await writer.WriteLineAsync(TextInput.Text);
             }
         }
     }
